@@ -13,9 +13,9 @@ Options:
   -e, --allow-empty        Allow deployment of an empty directory.
   -m, --message MESSAGE    Specify the message used when committing on the
                            deploy branch.
-  -n, --no-hash            Don't append the source commit's hash to the deploy
                            commit's message.
 "
+
 
 bundle exec middleman build --clean
 
