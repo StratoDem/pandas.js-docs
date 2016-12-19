@@ -358,7 +358,7 @@ and return a new <code class="prettyprint">Series</code></p>
 
 <p><a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.div.html">pandas equivalent</a></p>
 
-<h2 id="series-pct_change-number-1">`Series.pct_change({number=1})</h2>
+<h2 id="series-pct_change-number-1"><code class="prettyprint">Series.pct_change({number=1})</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
 
 <span class="nx">ds</span><span class="p">.</span><span class="nx">pct_change</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>    <span class="c1">// Series([null, 1, 0.5, 0.333, 0.25], {name: 'New Series'})</span>
@@ -368,7 +368,7 @@ and return a new <code class="prettyprint">Series</code></p>
 
 <p><a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.pct_change.html">pandas_equivalent</a></p>
 
-<h2 id="series-sort_values-boolean-true">`Series.sort_values({boolean=true})</h2>
+<h2 id="series-sort_values-boolean-true"><code class="prettyprint">Series.sort_values({boolean=true})</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">,</span> <span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]})</span>
 
 <span class="nx">ds</span><span class="p">.</span><span class="nx">sort_values</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span>    <span class="c1">// Series([0, 1, 2, 3], {name: 'New Series', index: [2, 1, 0, 3]})</span>
