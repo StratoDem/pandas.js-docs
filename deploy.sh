@@ -5,17 +5,15 @@ me=$(basename "$0")
 help_message="\
 Usage: $me [-c FILE] [<options>]
 Deploy generated files to a git branch.
-
 Options:
-
   -h, --help               Show this help information.
   -v, --verbose            Increase verbosity. Useful for debugging.
   -e, --allow-empty        Allow deployment of an empty directory.
   -m, --message MESSAGE    Specify the message used when committing on the
                            deploy branch.
+  -n, --no-hash            Don't append the source commit's hash to the deploy
                            commit's message.
 "
-
 
 bundle exec middleman build --clean
 
