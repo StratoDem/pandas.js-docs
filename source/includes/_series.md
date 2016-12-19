@@ -170,7 +170,7 @@ and return a new `Series`
 
 [pandas equivalent](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.div.html)
 
-## `Series.pct_change({number=1})
+## `Series.pct_change({number=1})`
 
 ```javascript
 const ds = new Series([1, 2, 3, 4, 5], {name: 'New Series'})
@@ -183,7 +183,7 @@ Return a new `Series` with values equal to the percent change over the number of
 
 [pandas_equivalent](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.pct_change.html)
 
-## `Series.sort_values({boolean=true})
+## `Series.sort_values({boolean=true})`
 
 ```javascript
 const ds = new Series([2, 1, 0, 3], {name: 'New Series', index: [0, 1, 2, 3]})
