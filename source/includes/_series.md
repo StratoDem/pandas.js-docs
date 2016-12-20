@@ -28,6 +28,19 @@ kwargs | Extra optional arguments for a Series | None | Object
 kwargs.name | The _name to assign to the Series | '' | string
 kwargs.index |  | None | Array, List
 
+## `Series.abs`
+
+```javascript
+const ds = new Series([-1, 2, -4, 5, -1, -2]);
+
+// Returns Series([1, 2, 4, 5, 1, 2]);
+ds.abs();
+```
+
+Return Series with absolute value of all values
+
+pandas equivalent: [Series.abs](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.abs.html)
+
 ## `Series.add`
 
 ```javascript
@@ -109,6 +122,29 @@ val | Value by which to divide the `Series` | None | Iterable, Series, number
 
 ### Returns Series
 
+## `Series.divide`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'New Series'})
+
+ds.divide(5)                           // Series([0.2, 0.4, 0.6], {name: 'New Series'})
+ds.divide(new Series([4, 2, 1]))       // Series([0.25, 1, 3], {name: 'New Series'})
+ds.divide([4, 2, 1])                   // Series([0.25, 1, 3], {name: 'New Series'})
+ds.divide(Immutable.List([4, 2, 1]))   // Series([0.25, 1, 3], {name: 'New Series'})
+```
+
+Divide by another Iterable, `Series`, or number from the `Series`
+
+pandas equivalent: [Series.divide](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.divide.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+val | Value by which to divide the `Series` | None | Iterable, Series, number
+
+### Returns Series
+
 ## `Series.dtype`
 
 ```javascript
@@ -119,6 +155,141 @@ ds.dtype;    // dtype('float');
 Return the dtype of the underlying data
 
 pandas equivalent [Series.dtype](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.dtype.html)
+
+## `Series.eq`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'Test name'})
+
+// Returns Series([true, false, false])
+ds.eq(1);
+
+// Returns Series([false, true, true])
+ds.eq(new Series([0, 2, 3]));
+
+// Returns Series([false, true, true])
+ds.eq(Immutable.List([0, 2, 3]));
+
+// Returns Series([false, true, true])
+ds.eq([0, 2, 3]);
+```
+
+Equal to of `Series` and other, element wise
+
+pandas equivalent: Series == val
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other | Other `Series` or scalar value to check for equality | None | Series, Array, List, number, string
+
+### Returns Series
+
+## `Series.filter`
+
+```javascript
+const ds = new Series([1, 2, 3]);
+
+// Returns Series([2, 3]);
+ds.filter(ds.gte(2));
+```
+
+Filter the Series by an Iterable (Series, Array, or List) of booleans and return the subset
+
+pandas equivalent: series[series condition]
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+iterBool | Iterable of booleans | None | Series, Array, List
+
+### Returns Series
+
+## `Series.gt`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'Test name'})
+
+// Returns Series([false, true, true])
+ds.gt(1);
+
+// Returns Series([true, false, false])
+ds.gt(new Series([0, 2, 3]));
+
+// Returns Series([true, false, false])
+ds.gt(Immutable.List([0, 2, 3]));
+
+// Returns Series([true, false, false])
+ds.gt([0, 2, 3]);
+```
+
+Greater than of `Series` and other, element wise
+
+pandas equivalent: Series > val
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other | Other `Series` or scalar value to check for greater than | None | Series, Array, List, number, string
+
+### Returns Series
+
+## `Series.gte`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'Test name'})
+
+// Returns Series([true, true, true])
+ds.gte(1);
+
+// Returns Series([true, true, false])
+ds.gte(new Series([0, 2, 4]));
+
+// Returns Series([true, true, false])
+ds.gte(Immutable.List([0, 2, 4]));
+
+// Returns Series([true, true, false])
+ds.gte([0, 2, 4]);
+```
+
+Greater than or equal to of `Series` and other, element wise
+
+pandas equivalent: Series >= val
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other | Other `Series` or scalar value to check for greater than or equal to | None | Series, Array, List, number, string
+
+### Returns Series
+
+## `Series.head`
+
+```javascript
+const ds = new Series([1, 2, 3, 4, 5, 6, 7, 8]);
+
+// Returns Series([1, 2, 3, 4, 5])
+ds.head();
+
+// Returns Series([1, 2, 3])
+ds.head(3);
+```
+
+Return first n rows
+
+pandas equivalent: [Series.head](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.head.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+n |  | 5 | number
+
+### Returns Series
 
 ## `Series.iloc`
 
@@ -183,6 +354,66 @@ Return the length of the `Series`
 
 pandas equivalent: len(series);
 
+## `Series.lt`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'Test name'})
+
+// Returns Series([false, false, false])
+ds.lt(1);
+
+// Returns Series([false, false, true])
+ds.lt(new Series([0, 2, 4]));
+
+// Returns Series([false, false, true])
+ds.lt(Immutable.List([0, 2, 5]));
+
+// Returns Series([false, false, true])
+ds.lt([0, 2, 5]);
+```
+
+Less than of `Series` and other, element wise
+
+pandas equivalent: Series < val
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other | Other `Series` or scalar value to check for less than | None | Series, Array, List, number, string
+
+### Returns Series
+
+## `Series.lte`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'Test name'})
+
+// Returns Series([false, false, false])
+ds.lte(1);
+
+// Returns Series([false, false, true])
+ds.lte(new Series([0, 2, 4]));
+
+// Returns Series([false, false, true])
+ds.lte(Immutable.List([0, 2, 5]));
+
+// Returns Series([false, false, true])
+ds.lte([0, 2, 5]);
+```
+
+Less than or equal to of `Series` and other, element wise
+
+pandas equivalent: Series <= val
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other | Other `Series` or scalar value to check for less than or equal to | None | Series, Array, List, number, string
+
+### Returns Series
+
 ## `Series.map`
 
 ```javascript
@@ -217,6 +448,19 @@ Return the mean of the values in the `Series`
 
 pandas equivalent: [Series.mean](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.mean.html)
 
+## `Series.median`
+
+```javascript
+const ds = new Series([2, 3, 1, 4, 5], {name: 'New Series'})
+
+// Returns 3
+ds.median();
+```
+
+Return the median of the values in the `Series`
+
+pandas equivalent: [Series.median](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.median.html)
+
 ## `Series.mul`
 
 ```javascript
@@ -240,6 +484,42 @@ val | Value to multiply by the `Series` | None | Iterable, Series, number
 
 ### Returns Series
 
+## `Series.multiply`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'New Series'})
+
+ds.multiply(5)                           // Series([5, 10, 15], {name: 'New Series'})
+ds.multiply(new Series([2, 3, 4]))       // Series([2, 6, 12], {name: 'New Series'})
+ds.multiply([2, 3, 4])                   // Series([2, 6, 12], {name: 'New Series'})
+ds.multiply(Immutable.List([2, 3, 4]))   // Series([2, 6, 12], {name: 'New Series'})
+```
+
+Multiply by another Iterable, `Series`, or number from the `Series`
+
+pandas equivalent: [Series.multiply](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.multiply.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+val | Value to multiply by the `Series` | None | Iterable, Series, number
+
+### Returns Series
+
+## `Series.notnull`
+
+```javascript
+const ds = new Series([1, 2, null, null, 4]);
+
+// Returns Series([true, true, false, false, true])
+ds.notnull();
+```
+
+Returns a boolean same-sized Series indicating if the values are not null
+
+pandas equivalent: [Series.notnull](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.notnull.html)
+
 ## `Series.pct_change`
 
 ```javascript
@@ -258,6 +538,52 @@ pandas equivalent: [Series.pct_change](http://pandas.pydata.org/pandas-docs/stab
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
 periods | Number of periods to use for percentage change calculation | 1 | number
+
+### Returns Series
+
+## `Series.round`
+
+```javascript
+const ds = new Series([1.25, 1.47, 1.321])
+
+// Returns Series([1.3, 1.5, 1.3])
+ds.round(1);
+```
+
+Return a `Series` with all values rounded to the nearest precision specified by decimals
+
+pandas equivalent: [Series.round](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.round.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+decimals | Number of decimals to round to | 0 | number
+
+## `Series.shift`
+
+```javascript
+const ds = new Series([1, 2, 3, 4]);
+
+// Returns Series([null, 1, 2, 3]);
+ds.shift(1);
+
+// Returns Series([null, null, 1, 2]);
+ds.shift(2);
+
+// Returns Series([3, 4, null, null]);
+ds.shift(-2);
+```
+
+Shift index by desired number of periods
+
+pandas equivalent:s [Series.shift](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.shift.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+periods | Number of periods to move, can be positive or negative | 1 | number
 
 ### Returns Series
 
@@ -331,6 +657,30 @@ Return the sum of the values in the `Series`
 
 pandas equivalent: [Series.sum](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.sum.html)
 
+## `Series.tail`
+
+```javascript
+const ds = new Series([1, 2, 3, 4, 5, 6, 7, 8]);
+
+// Returns Series([4, 5, 6, 7, 8])
+ds.tail();
+
+// Returns Series([6, 7, 8])
+ds.tail(3);
+```
+
+Return last n rows
+
+pandas equivalent: [Series.tail](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.tail.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+n |  | 5 | number
+
+### Returns Series
+
 ## `Series.toString`
 
 ```javascript
@@ -345,6 +695,18 @@ ds.toString()
 ```
 
 Return the `Series` as a string
+
+## `Series.unique`
+
+```javascript
+const ds = new Series(['foo', 'bar', 'bar', 'foo', 'foo', 'test', 'bar', 'hi']);
+// Returns ['foo', 'bar', 'test', 'hi']
+ds.unique();
+```
+
+Returns `Immutable.List` of unique values in the `Series`. Preserves order of the original
+
+pandas equivalent: [Series.unique](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.unique.html)
 
 ## `Series.values`
 
@@ -371,4 +733,30 @@ ds.variance();
 Return the variance of the values in the `Series`
 
 pandas equivalent: [Series.var](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.var.html)
+
+## `Series.where`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'Test name'})
+
+// Returns Series([true, false, false])
+ds.where(1, (v1, v2) => v1 === 1);
+
+// Returns Series([false, true, true])
+ds.where(new Series([0, 2, 3]), (v1, v2) => v1 === v2);
+```
+
+Flexible comparison of an iterable or value to the `Series`. Returns a `Series` of booleans of
+equivalent length
+
+pandas equivalent: [Series.where](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.where.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other | Iterable or value compared to Series | None | Series, Array, List, string, number
+op | Function which takes (a, b) values and returns a boolean | None | function
+
+### Returns Series
 

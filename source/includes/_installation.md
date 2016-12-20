@@ -12,6 +12,15 @@ npm install pandas-js
 npm install git+https://github.com/StratoDem/pandas.js
 ```
 
+## Import
+```javascript
+import { Series, DataFrame } from 'pandas-js';
+```
+```javascript
+var Series = require('pandas-js').Series;
+var DataFrame = require('pandas-js').DataFrame;
+```
+
 ## Create a new series
 
 ```javascript
