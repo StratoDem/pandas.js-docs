@@ -136,6 +136,11 @@ in Python pandas, the <a href="#series"><code class="prettyprint">Series</code><
 <pre class="highlight shell"><code>npm install pandas-js
 </code></pre><pre class="highlight shell"><code>npm install git+https://github.com/StratoDem/pandas.js
 </code></pre>
+<h2 id="import">Import</h2>
+<pre class="highlight javascript"><code><span class="kr">import</span> <span class="p">{</span> <span class="nx">Series</span><span class="p">,</span> <span class="nx">DataFrame</span> <span class="p">}</span> <span class="nx">from</span> <span class="s1">'pandas-js'</span><span class="p">;</span>
+</code></pre><pre class="highlight javascript"><code><span class="kd">var</span> <span class="nx">Series</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'pandas-js'</span><span class="p">).</span><span class="nx">Series</span><span class="p">;</span>
+<span class="kd">var</span> <span class="nx">DataFrame</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'pandas-js'</span><span class="p">).</span><span class="nx">DataFrame</span><span class="p">;</span>
+</code></pre>
 <h2 id="create-a-new-series">Create a new series</h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds_1</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'My Data 1'</span><span class="p">});</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'This is a Series'</span><span class="p">);</span>
@@ -254,6 +259,16 @@ values</p>
 </tr>
 </tbody></table>
 
+<h2 id="series-abs"><code class="prettyprint">Series.abs</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">]);</span>
+
+<span class="c1">// Returns Series([1, 2, 4, 5, 1, 2]);</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">abs</span><span class="p">();</span>
+</code></pre>
+<p>Return Series with absolute value of all values</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.abs.html">Series.abs</a></p>
+
 <h2 id="series-add"><code class="prettyprint">Series.add</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
 <span class="nx">ds</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>                           <span class="c1">// Series([6, 7, 8], {name: 'New Series'})</span>
@@ -359,6 +374,38 @@ values</p>
 
 <h3 id="returns-series">Returns Series</h3>
 
+<h2 id="series-divide"><code class="prettyprint">Series.divide</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
+
+<span class="nx">ds</span><span class="p">.</span><span class="nx">divide</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>                           <span class="c1">// Series([0.2, 0.4, 0.6], {name: 'New Series'})</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">divide</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>       <span class="c1">// Series([0.25, 1, 3], {name: 'New Series'})</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">divide</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>                   <span class="c1">// Series([0.25, 1, 3], {name: 'New Series'})</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">divide</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>   <span class="c1">// Series([0.25, 1, 3], {name: 'New Series'})</span>
+</code></pre>
+<p>Divide by another Iterable, <code class="prettyprint">Series</code>, or number from the <code class="prettyprint">Series</code></p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.divide.html">Series.divide</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>val</td>
+<td>Value by which to divide the <code class="prettyprint">Series</code></td>
+<td>None</td>
+<td>Iterable, Series, number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
 <h2 id="series-dtype"><code class="prettyprint">Series.dtype</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Series name'</span><span class="p">});</span>
 <span class="nx">ds</span><span class="p">.</span><span class="nx">dtype</span><span class="p">;</span>    <span class="c1">// dtype('float');</span>
@@ -366,6 +413,186 @@ values</p>
 <p>Return the dtype of the underlying data</p>
 
 <p>pandas equivalent <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.dtype.html">Series.dtype</a></p>
+
+<h2 id="series-eq"><code class="prettyprint">Series.eq</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Test name'</span><span class="p">})</span>
+
+<span class="c1">// Returns Series([true, false, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([false, true, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([false, true, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([false, true, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">eq</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</code></pre>
+<p>Equal to of <code class="prettyprint">Series</code> and other, element wise</p>
+
+<p>pandas equivalent: Series == val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other <code class="prettyprint">Series</code> or scalar value to check for equality</td>
+<td>None</td>
+<td>Series, Array, List, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
+<h2 id="series-filter"><code class="prettyprint">Series.filter</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+
+<span class="c1">// Returns Series([2, 3]);</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">ds</span><span class="p">.</span><span class="nx">gte</span><span class="p">(</span><span class="mi">2</span><span class="p">));</span>
+</code></pre>
+<p>Filter the Series by an Iterable (Series, Array, or List) of booleans and return the subset</p>
+
+<p>pandas equivalent: series[series condition]</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>iterBool</td>
+<td>Iterable of booleans</td>
+<td>None</td>
+<td>Series, Array, List</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
+<h2 id="series-gt"><code class="prettyprint">Series.gt</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Test name'</span><span class="p">})</span>
+
+<span class="c1">// Returns Series([false, true, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([true, false, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([true, false, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([true, false, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gt</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+</code></pre>
+<p>Greater than of <code class="prettyprint">Series</code> and other, element wise</p>
+
+<p>pandas equivalent: Series &gt; val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other <code class="prettyprint">Series</code> or scalar value to check for greater than</td>
+<td>None</td>
+<td>Series, Array, List, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
+<h2 id="series-gte"><code class="prettyprint">Series.gte</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Test name'</span><span class="p">})</span>
+
+<span class="c1">// Returns Series([true, true, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gte</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([true, true, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gte</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([true, true, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gte</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([true, true, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">gte</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+</code></pre>
+<p>Greater than or equal to of <code class="prettyprint">Series</code> and other, element wise</p>
+
+<p>pandas equivalent: Series &gt;= val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other <code class="prettyprint">Series</code> or scalar value to check for greater than or equal to</td>
+<td>None</td>
+<td>Series, Array, List, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
+<h2 id="series-head"><code class="prettyprint">Series.head</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]);</span>
+
+<span class="c1">// Returns Series([1, 2, 3, 4, 5])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">head</span><span class="p">();</span>
+
+<span class="c1">// Returns Series([1, 2, 3])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">head</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</code></pre>
+<p>Return first n rows</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.head.html">Series.head</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>n</td>
+<td></td>
+<td>5</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
 
 <h2 id="series-iloc"><code class="prettyprint">Series.iloc</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
@@ -447,6 +674,84 @@ values</p>
 
 <p>pandas equivalent: len(series);</p>
 
+<h2 id="series-lt"><code class="prettyprint">Series.lt</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Test name'</span><span class="p">})</span>
+
+<span class="c1">// Returns Series([false, false, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([false, false, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([false, false, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([false, false, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lt</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]);</span>
+</code></pre>
+<p>Less than of <code class="prettyprint">Series</code> and other, element wise</p>
+
+<p>pandas equivalent: Series &lt; val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other <code class="prettyprint">Series</code> or scalar value to check for less than</td>
+<td>None</td>
+<td>Series, Array, List, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
+<h2 id="series-lte"><code class="prettyprint">Series.lte</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Test name'</span><span class="p">})</span>
+
+<span class="c1">// Returns Series([false, false, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lte</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([false, false, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lte</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([false, false, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lte</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]));</span>
+
+<span class="c1">// Returns Series([false, false, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">lte</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">]);</span>
+</code></pre>
+<p>Less than or equal to of <code class="prettyprint">Series</code> and other, element wise</p>
+
+<p>pandas equivalent: Series &lt;= val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other <code class="prettyprint">Series</code> or scalar value to check for less than or equal to</td>
+<td>None</td>
+<td>Series, Array, List, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
 <h2 id="series-map"><code class="prettyprint">Series.map</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
 
@@ -487,6 +792,16 @@ values</p>
 
 <p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.mean.html">Series.mean</a></p>
 
+<h2 id="series-median"><code class="prettyprint">Series.median</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
+
+<span class="c1">// Returns 3</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">median</span><span class="p">();</span>
+</code></pre>
+<p>Return the median of the values in the <code class="prettyprint">Series</code></p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.median.html">Series.median</a></p>
+
 <h2 id="series-mul"><code class="prettyprint">Series.mul</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
 
@@ -519,6 +834,48 @@ values</p>
 
 <h3 id="returns-series">Returns Series</h3>
 
+<h2 id="series-multiply"><code class="prettyprint">Series.multiply</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
+
+<span class="nx">ds</span><span class="p">.</span><span class="nx">multiply</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>                           <span class="c1">// Series([5, 10, 15], {name: 'New Series'})</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">multiply</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>       <span class="c1">// Series([2, 6, 12], {name: 'New Series'})</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">multiply</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>                   <span class="c1">// Series([2, 6, 12], {name: 'New Series'})</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">multiply</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">List</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]))</span>   <span class="c1">// Series([2, 6, 12], {name: 'New Series'})</span>
+</code></pre>
+<p>Multiply by another Iterable, <code class="prettyprint">Series</code>, or number from the <code class="prettyprint">Series</code></p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.multiply.html">Series.multiply</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>val</td>
+<td>Value to multiply by the <code class="prettyprint">Series</code></td>
+<td>None</td>
+<td>Iterable, Series, number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
+<h2 id="series-notnull"><code class="prettyprint">Series.notnull</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+
+<span class="c1">// Returns Series([true, true, false, false, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">notnull</span><span class="p">();</span>
+</code></pre>
+<p>Returns a boolean same-sized Series indicating if the values are not null</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.notnull.html">Series.notnull</a></p>
+
 <h2 id="series-pct_change"><code class="prettyprint">Series.pct_change</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'New Series'</span><span class="p">})</span>
 
@@ -542,6 +899,70 @@ values</p>
 <tr>
 <td>periods</td>
 <td>Number of periods to use for percentage change calculation</td>
+<td>1</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
+<h2 id="series-round"><code class="prettyprint">Series.round</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mf">1.25</span><span class="p">,</span> <span class="mf">1.47</span><span class="p">,</span> <span class="mf">1.321</span><span class="p">])</span>
+
+<span class="c1">// Returns Series([1.3, 1.5, 1.3])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">round</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+<p>Return a <code class="prettyprint">Series</code> with all values rounded to the nearest precision specified by decimals</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.round.html">Series.round</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>decimals</td>
+<td>Number of decimals to round to</td>
+<td>0</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<h2 id="series-shift"><code class="prettyprint">Series.shift</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]);</span>
+
+<span class="c1">// Returns Series([null, 1, 2, 3]);</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">shift</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([null, null, 1, 2]);</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">shift</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([3, 4, null, null]);</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">shift</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+<p>Shift index by desired number of periods</p>
+
+<p>pandas equivalent:s <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.shift.html">Series.shift</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>periods</td>
+<td>Number of periods to move, can be positive or negative</td>
 <td>1</td>
 <td>number</td>
 </tr>
@@ -631,6 +1052,39 @@ values</p>
 
 <p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.sum.html">Series.sum</a></p>
 
+<h2 id="series-tail"><code class="prettyprint">Series.tail</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">]);</span>
+
+<span class="c1">// Returns Series([4, 5, 6, 7, 8])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">tail</span><span class="p">();</span>
+
+<span class="c1">// Returns Series([6, 7, 8])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">tail</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</code></pre>
+<p>Return last n rows</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.tail.html">Series.tail</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>n</td>
+<td></td>
+<td>5</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
+
 <h2 id="series-tostring"><code class="prettyprint">Series.toString</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'My test name'</span><span class="p">,</span> <span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]})</span>
 <span class="nx">ds</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
@@ -642,6 +1096,15 @@ values</p>
 <span class="c1">// Name: My test name, dtype: dtype(int)</span>
 </code></pre>
 <p>Return the <code class="prettyprint">Series</code> as a string</p>
+
+<h2 id="series-unique"><code class="prettyprint">Series.unique</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'hi'</span><span class="p">]);</span>
+<span class="c1">// Returns ['foo', 'bar', 'test', 'hi']</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">unique</span><span class="p">();</span>
+</code></pre>
+<p>Returns <code class="prettyprint">Immutable.List</code> of unique values in the <code class="prettyprint">Series</code>. Preserves order of the original</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.unique.html">Series.unique</a></p>
 
 <h2 id="series-values"><code class="prettyprint">Series.values</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Series name'</span><span class="p">});</span>
@@ -662,6 +1125,46 @@ values</p>
 <p>Return the variance of the values in the <code class="prettyprint">Series</code></p>
 
 <p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.var.html">Series.var</a></p>
+
+<h2 id="series-where"><code class="prettyprint">Series.where</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'Test name'</span><span class="p">})</span>
+
+<span class="c1">// Returns Series([true, false, false])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">v1</span> <span class="o">===</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns Series([false, true, true])</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="p">(</span><span class="nx">v1</span><span class="p">,</span> <span class="nx">v2</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">v1</span> <span class="o">===</span> <span class="nx">v2</span><span class="p">);</span>
+</code></pre>
+<p>Flexible comparison of an iterable or value to the <code class="prettyprint">Series</code>. Returns a <code class="prettyprint">Series</code> of booleans of
+equivalent length</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.where.html">Series.where</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Iterable or value compared to Series</td>
+<td>None</td>
+<td>Series, Array, List, string, number</td>
+</tr>
+<tr>
+<td>op</td>
+<td>Function which takes (a, b) values and returns a boolean</td>
+<td>None</td>
+<td>function</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-series">Returns Series</h3>
 
           <h1 id="dataframe">DataFrame</h1>
 
@@ -760,6 +1263,77 @@ container for Series objects. The primary pandas data structure</p>
 
 <p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.copy.html">DataFrame.copy</a></p>
 
+<h2 id="dataframe-eq"><code class="prettyprint">DataFrame.eq</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span><span class="na">x</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="na">y</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, false]), y: Series([false, true])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">eq</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, false]), y: Series([false, false])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span>
+   <span class="na">a</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+   <span class="na">b</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])})));</span>
+</code></pre>
+<p>Equal to <code class="prettyprint">DataFrame</code> and other, element wise</p>
+
+<p>pandas equivalent: df == val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other Iterable or scalar value to check for equal to</td>
+<td>None</td>
+<td>Array, List, Series, DataFrame, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-filter"><code class="prettyprint">DataFrame.filter</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">Map</span><span class="p">({</span><span class="na">x</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="na">y</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}));</span>
+
+<span class="c1">// Returns DataFrame(Immutable.Map({x: Series([2]), y: Series([3]));</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">df</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'x'</span><span class="p">).</span><span class="nx">gt</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="c1">// Returns DataFrame(Immutable.Map({x: Series([2]), y: Series([3]));</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">filter</span><span class="p">([</span><span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">]);</span>
+
+<span class="c1">// Returns DataFrame(Immutable.Map({x: Series([2]), y: Series([3]));</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">Immutable</span><span class="p">.</span><span class="nx">Map</span><span class="p">([</span><span class="kc">false</span><span class="p">,</span> <span class="kc">true</span><span class="p">]));</span>
+</code></pre>
+<p>Filter the DataFrame by an Iterable (Series, Array, or List) of booleans and return the subset</p>
+
+<p>pandas equivalent: df[df condition]</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>iterBool</td>
+<td>Iterable of booleans</td>
+<td>None</td>
+<td>Series, Array, List</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
 <h2 id="dataframe-get"><code class="prettyprint">DataFrame.get</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
 
@@ -789,6 +1363,76 @@ container for Series objects. The primary pandas data structure</p>
 </tbody></table>
 
 <h3 id="returns-series">Returns Series</h3>
+
+<h2 id="dataframe-gt"><code class="prettyprint">DataFrame.gt</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span><span class="na">x</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="na">y</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([false, false]), y: Series([true, false])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([false, true]), y: Series([true, true])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">gt</span><span class="p">(</span><span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span>
+   <span class="na">a</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+   <span class="na">b</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])})));</span>
+</code></pre>
+<p>Greater than of <code class="prettyprint">DataFrame</code> and other, element wise</p>
+
+<p>pandas equivalent: df &gt; val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other Iterable or scalar value to check for greater than</td>
+<td>None</td>
+<td>Array, List, Series, DataFrame, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-gte"><code class="prettyprint">DataFrame.gte</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span><span class="na">x</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="na">y</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, false]), y: Series([true, true])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">gte</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, true]), y: Series([true, true])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">gte</span><span class="p">(</span><span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span>
+   <span class="na">a</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+   <span class="na">b</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])})));</span>
+</code></pre>
+<p>Greater than or equal to of <code class="prettyprint">DataFrame</code> and other, element wise</p>
+
+<p>pandas equivalent: df &gt;= val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other Iterable or scalar value to check for greater than or equal to</td>
+<td>None</td>
+<td>Array, List, Series, DataFrame, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
 
 <h2 id="dataframe-index"><code class="prettyprint">DataFrame.index</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
@@ -848,6 +1492,76 @@ container for Series objects. The primary pandas data structure</p>
 <p>Return the length of the <code class="prettyprint">DataFrame</code></p>
 
 <p>pandas equivalent: len(df);</p>
+
+<h2 id="dataframe-lt"><code class="prettyprint">DataFrame.lt</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span><span class="na">x</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="na">y</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([false, true]), y: Series([false, false])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([false, false]), y: Series([false, false])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">lt</span><span class="p">(</span><span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span>
+   <span class="na">a</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+   <span class="na">b</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])})));</span>
+</code></pre>
+<p>Less than of <code class="prettyprint">DataFrame</code> and other, element wise</p>
+
+<p>pandas equivalent: df &lt; val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other Iterable or scalar value to check for less than</td>
+<td>None</td>
+<td>Array, List, Series, DataFrame, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-lte"><code class="prettyprint">DataFrame.lte</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span><span class="na">x</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span> <span class="na">y</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])}));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, true]), y: Series([false, true])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">lte</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]));</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, false]), y: Series([false, false])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">lte</span><span class="p">(</span><span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span>
+   <span class="na">a</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+   <span class="na">b</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])})));</span>
+</code></pre>
+<p>Less than or equal to of <code class="prettyprint">DataFrame</code> and other, element wise</p>
+
+<p>pandas equivalent: df &lt;= val</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Other Iterable or scalar value to check for less than or equal to</td>
+<td>None</td>
+<td>Array, List, Series, DataFrame, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
 
 <h2 id="dataframe-mean"><code class="prettyprint">DataFrame.mean</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
@@ -976,6 +1690,16 @@ container for Series objects. The primary pandas data structure</p>
 </tbody></table>
 
 <h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-shape"><code class="prettyprint">DataFrame.shape</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}];</span>
+
+<span class="c1">// Returns List [3, 2]</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">shape</span><span class="p">;</span>
+</code></pre>
+<p>Return a List representing the dimensionality of the DataFrame</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.shape.html">DataFrame.shape</a></p>
 
 <h2 id="dataframe-std"><code class="prettyprint">DataFrame.std</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
@@ -1119,6 +1843,49 @@ container for Series objects. The primary pandas data structure</p>
 </tbody></table>
 
 <h3 id="returns-series">Returns Series</h3>
+
+<h2 id="dataframe-where"><code class="prettyprint">DataFrame.where</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">}]);</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, false]), y: Series([false, true])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]),</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
+
+<span class="c1">// Returns DataFrame(Map({x: Series([true, false]), y: Series([false, true])})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">where</span><span class="p">(</span><span class="k">new</span> <span class="nx">DataFrame</span><span class="p">(</span><span class="nx">Map</span><span class="p">({</span>
+   <span class="na">a</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+   <span class="na">b</span><span class="p">:</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">])})),</span>
+   <span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="nx">a</span> <span class="o">===</span> <span class="nx">b</span><span class="p">);</span>
+</code></pre>
+<p>Return an object of same shape as self and whose corresponding entries are from self
+where cond is True and otherwise are from other.</p>
+
+<p>pandas equivalent <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.where.html">DataFrame.where</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>other</td>
+<td>Iterable or value to compare to DataFrame</td>
+<td>None</td>
+<td>Array, List, Series, DataFrame, number, string</td>
+</tr>
+<tr>
+<td>op</td>
+<td>Function which takes (a, b) values and returns a boolean</td>
+<td>None</td>
+<td>function</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
 
       </div>
       <div class="dark-box">
