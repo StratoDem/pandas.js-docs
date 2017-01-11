@@ -99,6 +99,56 @@ Return a new deep copy of the `Series`
 
 pandas equivalent: [Series.copy](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.copy.html)
 
+## `Series.corr`
+
+```javascript
+const ds1 = new Series([1, 2, 3, 4, 5]);
+const ds2 = new Series([2, 4, 6, 8, 10]);
+
+// Returns 1
+ds1.corr(ds2);
+
+// Also returns 1
+ds2.corr(ds1);
+```
+
+Calculate the correlation between this `Series` and another `Series` or iterable
+
+pandas equivalent: [Series.corr](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.corr.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+ds | Series with which to calculate correlation | None | Series
+
+### Returns number
+
+## `Series.cov`
+
+```javascript
+const ds1 = new Series([1, 2, 3, 4, 5]);
+const ds2 = new Series([2, 4, 6, 8, 10]);
+
+// Returns 5
+ds1.cov(ds2);
+
+// Also returns 5
+ds2.cov(ds1);
+```
+
+Calculate the covariance between this `Series` and another `Series` or iterable
+
+pandas equivalent: [Series.cov](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cov.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+ds | Series with which to calculate covariance | None | Series
+
+### Returns number
+
 ## `Series.div`
 
 ```javascript
@@ -759,4 +809,3 @@ other | Iterable or value compared to Series | None | Series, Array, List, strin
 op | Function which takes (a, b) values and returns a boolean | None | function
 
 ### Returns Series
-

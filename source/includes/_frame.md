@@ -73,6 +73,32 @@ Return a new deep copy of the `DataFrame`
 
 pandas equivalent: [DataFrame.copy](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.copy.html)
 
+## `DataFrame.corr`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2, z: 3}, {x: 2, y: 1, z: 5}, {x: 3, y: 0, z: 7}]);
+
+// Returns DataFrame([{x: 1, y: -1, z: 1}, {x: -1, y: 1, z: -1}, {x: 1, y: -1, z: 1}])
+df.corr();
+```
+
+Calculate the correlation between all `Series` in the `DataFrame`
+
+pandas equivalent: [DataFrame.corr](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.corr.html)
+
+## `DataFrame.cov`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2, z: 3}, {x: 2, y: 1, z: 5}, {x: 3, y: 0, z: 7}]);
+
+// Returns DataFrame([{x: 1, y: -1, z: 2}, {x: -1, y: 1, z: -2}, {x: 2, y: -2, z: 4}])
+df.cov();
+```
+
+Calculate the covariance between all `Series` in the `DataFrame`
+
+pandas equivalent: [DataFrame.cov](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cov.html)
+
 ## `DataFrame.eq`
 
 ```javascript
@@ -237,7 +263,7 @@ const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]);
 
 // Logs 2 4 6
 for(const [row, idx] of df) {
-  console.log(row.get('x').iloc(0) * 2);
+  console.log(row.get('x') * 2);
 }
 ```
 
@@ -399,19 +425,6 @@ axis | Axis along which to calculate percentage change | 0 | number
 
 ### Returns DataFrame
 
-## `DataFrame.shape`
-
-```javascript
-const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}];
-
-// Returns List [3, 2]
-df.shape;
-```
-
-Return a List representing the dimensionality of the DataFrame
-
-pandas equivalent: [DataFrame.shape](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.shape.html)
-
 ## `DataFrame.std`
 
 ```javascript
@@ -571,4 +584,3 @@ other | Iterable or value to compare to DataFrame | None | Array, List, Series, 
 op | Function which takes (a, b) values and returns a boolean | None | function
 
 ### Returns DataFrame
-
