@@ -149,6 +149,30 @@ ds | Series with which to calculate covariance | None | Series
 
 ### Returns number
 
+## `Series.diff`
+
+```javascript
+const ds = new Series([1, 2, 6, 5])
+
+// Returns Series([null, 1, 4, -1])
+ds.diff();
+
+// Returns Series([null, null, 5, 3])
+ds.diff(2);
+```
+
+Return the difference over a given number of periods
+
+pandas equivalent: [Series.diff](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.diff.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+periods | Number of periods to use for difference calculation | 1 | number
+
+### Returns Series
+
 ## `Series.div`
 
 ```javascript
@@ -809,3 +833,4 @@ other | Iterable or value compared to Series | None | Series, Array, List, strin
 op | Function which takes (a, b) values and returns a boolean | None | function
 
 ### Returns Series
+
