@@ -99,6 +99,32 @@ Calculate the covariance between all `Series` in the `DataFrame`
 
 pandas equivalent: [DataFrame.cov](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cov.html)
 
+## `DataFrame.diff`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]);
+
+// Returns
+//    x    |  y
+// 0  null |  null
+// 1  1    |  1
+// 2  1  |  1
+df.diff().toString();
+```
+
+Return the difference over a given number of periods along the axis
+
+pandas equivalent: [DataFrame.diff](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.diff.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+periods | Number of periods to use for difference calculation | 1 | number
+axis | Axis along which to calculate difference | 0 | number
+
+### Returns DataFrame
+
 ## `DataFrame.eq`
 
 ```javascript
@@ -584,3 +610,4 @@ other | Iterable or value to compare to DataFrame | None | Array, List, Series, 
 op | Function which takes (a, b) values and returns a boolean | None | function
 
 ### Returns DataFrame
+
