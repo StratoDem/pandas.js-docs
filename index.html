@@ -1198,6 +1198,48 @@ values</p>
 </code></pre>
 <p>Return the <code class="prettyprint">Series</code> as a string</p>
 
+<h2 id="series-to_json"><code class="prettyprint">Series.to_json</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">name</span><span class="p">:</span> <span class="s1">'x'</span><span class="p">});</span>
+
+<span class="c1">// Returns {0: 1, 1: 2, 2: 3}</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">to_json</span><span class="p">();</span>
+
+<span class="c1">// Returns [1, 2, 3]</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">to_json</span><span class="p">({</span><span class="na">orient</span><span class="p">:</span> <span class="s1">'records'</span><span class="p">});</span>
+
+<span class="c1">// Returns {index: [0, 1, 2], name: 'x', values: [1, 2, 3]}</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">to_json</span><span class="p">({</span><span class="na">orient</span><span class="p">:</span> <span class="s1">'split'</span><span class="p">});</span>
+</code></pre>
+<p>Convert the Series to a json object</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.to_json.html">Series.to_json</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kwargs</td>
+<td></td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>kwargs.orient</td>
+<td>orientation of JSON</td>
+<td>columns</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns *</h3>
+
 <h2 id="series-unique"><code class="prettyprint">Series.unique</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'test'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">,</span> <span class="s1">'hi'</span><span class="p">]);</span>
 <span class="c1">// Returns ['foo', 'bar', 'test', 'hi']</span>
@@ -1349,7 +1391,7 @@ container for Series objects. The primary pandas data structure</p>
 <td>columns</td>
 <td>Next column names</td>
 <td>None</td>
-<td>Array</td>
+<td>Seq.Indexed.<string>, Array</td>
 </tr>
 </tbody></table>
 
@@ -1500,6 +1542,9 @@ container for Series objects. The primary pandas data structure</p>
 
 <span class="c1">// Returns Series([1, 2, 3], {name: 'x', index: [0, 1, 2]})</span>
 <span class="nx">df</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">'x'</span><span class="p">);</span>
+
+<span class="c1">// Returns DataFrame([{y: 2}, {y: 3}, {y: 4}])</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">get</span><span class="p">([</span><span class="s1">'y'</span><span class="p">]);</span>
 </code></pre>
 <p>Return the <code class="prettyprint">Series</code> at the column</p>
 
@@ -1517,9 +1562,9 @@ container for Series objects. The primary pandas data structure</p>
 </thead><tbody>
 <tr>
 <td>columns</td>
-<td>Name of the column to retrieve</td>
+<td>Name of the column to retrieve or list of columns to retrieve</td>
 <td>None</td>
-<td>string</td>
+<td>string, Array.<string>, Immutable.List.<string>, Immutable.Seq.<string></td>
 </tr>
 </tbody></table>
 
@@ -1590,6 +1635,84 @@ container for Series objects. The primary pandas data structure</p>
 <td>Other Iterable or scalar value to check for greater than or equal to</td>
 <td>None</td>
 <td>Array, List, Series, DataFrame, number, string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-head"><code class="prettyprint">DataFrame.head</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">5</span><span class="p">}]);</span>
+
+<span class="c1">// returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}])</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">head</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+<p>Return new DataFrame composed of first n rows of this DataFrame</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.head.html">DataFrame.head</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>n</td>
+<td>Integer number of n rows to return from the DataFrame</td>
+<td>10</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-iloc"><code class="prettyprint">DataFrame.iloc</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">z</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">z</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">z</span><span class="p">:</span> <span class="mi">5</span><span class="p">}]);</span>
+
+<span class="c1">// Returns DataFrame([{y: 3}], {index: [1]})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">iloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns DataFrame([{y: 3, z: 4}}], {index: [1]})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">iloc</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+
+<span class="c1">// Returns DataFrame([{y: 3, z: 4}, {y: 4, z: 5}], {index: [1, 2]})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">iloc</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]);</span>
+
+<span class="c1">// Returns DataFrame([{y: 3}, {y: 4}], {index: [1, 2]})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">iloc</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="c1">// Returns DataFrame([{y: 2}, {y: 3}, {y: 4}], {index: [0, 1, 2]})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">iloc</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+<p>Return new DataFrame subset at [rowIdx, colIdx]</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.iloc.html">DataFrame.iloc</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rowIdx</td>
+<td></td>
+<td>None</td>
+<td>number, Array.<number></td>
+</tr>
+<tr>
+<td>colIdx</td>
+<td></td>
+<td>None</td>
+<td>number, Array.<number>=</td>
 </tr>
 </tbody></table>
 
@@ -1852,6 +1975,45 @@ container for Series objects. The primary pandas data structure</p>
 
 <h3 id="returns-dataframe">Returns DataFrame</h3>
 
+<h2 id="dataframe-pivot"><code class="prettyprint">DataFrame.pivot</code></h2>
+
+<p>Reshape data (produce a &#39;pivot&rsquo; table) based on column values. Uses unique values from
+index / columns to form axes of the resulting DataFrame.</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.pivot.html">DataFrame.pivot</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>index</td>
+<td>Name of the column to use as index</td>
+<td>None</td>
+<td>string, number</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>Name of the column to use as column values</td>
+<td>None</td>
+<td>string, number</td>
+</tr>
+<tr>
+<td>values</td>
+<td>Name of the column to use as the value</td>
+<td>None</td>
+<td>string, number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
 <h2 id="dataframe-std"><code class="prettyprint">DataFrame.std</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
 
@@ -1934,6 +2096,36 @@ container for Series objects. The primary pandas data structure</p>
 
 <h3 id="returns-series">Returns Series</h3>
 
+<h2 id="dataframe-tail"><code class="prettyprint">DataFrame.tail</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">5</span><span class="p">}]);</span>
+
+<span class="c1">// returns DataFrame([{x: 3, y: 4}, {x: 4, y: 5}])</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</code></pre>
+<p>Return new DataFrame composed of last n rows of this DataFrame</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.tail.html">DataFrame.tail</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>n</td>
+<td>Integer number of n rows to return from the DataFrame</td>
+<td>10</td>
+<td>number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
 <h2 id="dataframe-to_csv"><code class="prettyprint">DataFrame.to_csv</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
 
@@ -1943,6 +2135,102 @@ container for Series objects. The primary pandas data structure</p>
 <p>Convert the <code class="prettyprint">DataFrame</code> to a csv string</p>
 
 <p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_csv.html">DataFrame.to_csv</a></p>
+
+<h2 id="dataframe-to_excel"><code class="prettyprint">DataFrame.to_excel</code></h2>
+
+<p>Write the <code class="prettyprint">DataFrame</code> to a Workbook object</p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>excel_writer</td>
+<td>File path or existing Workbook object</td>
+<td>None</td>
+<td>string, Workbook</td>
+</tr>
+<tr>
+<td>sheetName</td>
+<td>Name of values which will contain DataFrame</td>
+<td>Sheet1</td>
+<td>string</td>
+</tr>
+<tr>
+<td>download</td>
+<td>Download the excel file?</td>
+<td>False</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>kwargs</td>
+<td></td>
+<td>None</td>
+<td>Object</td>
+</tr>
+<tr>
+<td>kwargs.index</td>
+<td></td>
+<td>True</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-workbook">Returns Workbook</h3>
+
+<h2 id="dataframe-to_json"><code class="prettyprint">DataFrame.to_json</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
+
+<span class="c1">// Returns {x: {0: 1, 1: 2, 2: 3}, y: {0: 1, 1: 2, 2: 3}}</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">to_json</span><span class="p">();</span>
+
+<span class="c1">// Returns [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">to_json</span><span class="p">({</span><span class="na">orient</span><span class="p">:</span> <span class="s1">'records'</span><span class="p">});</span>
+
+<span class="c1">// Returns {0: {x: 1, y: 2}, 1: {x: 2, y: 3}, 2: {x: 3, y: 4}}</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">to_json</span><span class="p">({</span><span class="na">orient</span><span class="p">:</span> <span class="s1">'index'</span><span class="p">});</span>
+
+<span class="c1">// Returns {index: [0, 1, 2], columns: ['x', 'y'], values: [[1, 2], [2, 3], [3, 4]]}</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">to_json</span><span class="p">({</span><span class="na">orient</span><span class="p">:</span> <span class="s1">'split'</span><span class="p">});</span>
+
+<span class="c1">// Returns [[1, 2], [2, 3], [3, 4]]</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">to_json</span><span class="p">({</span><span class="na">orient</span><span class="p">:</span> <span class="s1">'values'</span><span class="p">});</span>
+</code></pre>
+<p>Convert the DataFrame to a json object</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html">DataFrame.to_json</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>kwargs</td>
+<td></td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>kwargs.orient</td>
+<td>orientation of JSON</td>
+<td>columns</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns">Returns *</h3>
 
 <h2 id="dataframe-values"><code class="prettyprint">DataFrame.values</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
