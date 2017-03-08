@@ -410,6 +410,16 @@ values</p>
 
 <h3 id="returns-number">Returns number</h3>
 
+<h2 id="series-cumsum"><code class="prettyprint">Series.cumsum</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns Series([1, 3, 6], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cumsum</span><span class="p">();</span>
+</code></pre>
+<p>Return cumulative sum over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cumsum.html">Series.cumsum</a></p>
+
 <h2 id="series-diff"><code class="prettyprint">Series.diff</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
 
@@ -1426,6 +1436,58 @@ container for Series objects. The primary pandas data structure</p>
 
 <p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cov.html">DataFrame.cov</a></p>
 
+<h2 id="dataframe-cummax"><code class="prettyprint">DataFrame.cummax</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummax</span><span class="p">();</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3 ,4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummax</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+<p>Return cumulative maximum over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cummax.html">DataFrame.cummax</a></p>
+
+<h2 id="dataframe-cummin"><code class="prettyprint">DataFrame.cummin</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 1}, {x: 1, y: 1}, {x: 1, y: 1}], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummin</span><span class="p">();</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}], {index: [2, 3 ,4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummin</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+<p>Return cumulative minimum over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cummin.html">DataFrame.cummin</a></p>
+
+<h2 id="dataframe-cummul"><code class="prettyprint">DataFrame.cummul</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 6}, {x: 6, y: 24}], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummul</span><span class="p">();</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 6}, {x: 3, y: 12}], {index: [2, 3 ,4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummul</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+<p>Return cumulative multiple over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cummul.html">DataFrame.cummul</a></p>
+
+<h2 id="dataframe-cumsum"><code class="prettyprint">DataFrame.cumsum</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 2}, {x: 3, y: 5}, {x: 6, y: 9}], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cumsum</span><span class="p">();</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 3}, {x: 2, y: 5}, {x: 3, y: 7}], {index: [2, 3 ,4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cumsum</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+</code></pre>
+<p>Return cumulative sum over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cumsum.html">DataFrame.cumsum</a></p>
+
 <h2 id="dataframe-diff"><code class="prettyprint">DataFrame.diff</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">4</span><span class="p">}]);</span>
 
@@ -2009,6 +2071,83 @@ index / columns to form axes of the resulting DataFrame.</p>
 <td>Name of the column to use as the value</td>
 <td>None</td>
 <td>string, number</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-reset_index"><code class="prettyprint">DataFrame.reset_index</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="na">y</span><span class="p">:</span> <span class="mi">3</span><span class="p">}],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]});</span>
+
+<span class="c1">// returns DataFrame([{index: 1, x: 1, y: 2}, {index: 2, x: 2, y: 3}], {index: [0, 1]})</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">reset_index</span><span class="p">();</span>
+
+<span class="c1">// returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}], {index: [0, 1]});</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">reset_index</span><span class="p">({</span><span class="na">drop</span><span class="p">:</span> <span class="kc">true</span><span class="p">});</span>
+
+<span class="kr">const</span> <span class="nx">df2</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">index</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="mi">2</span><span class="p">}],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]});</span>
+<span class="c1">// returns DataFrame([{level_0: 1, index: 1}, {level_0: 1, index: 2}], {index: [1, 2]});</span>
+<span class="nx">df2</span><span class="p">.</span><span class="nx">reset_index</span><span class="p">();</span>
+</code></pre>
+<p>Reset the index for a DataFrame</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html">DataFrame.reset_index</a></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>args</td>
+<td></td>
+<td>None</td>
+<td>object</td>
+</tr>
+<tr>
+<td>args.drop</td>
+<td>Drop the index when resetting? Otherwise, add as new column</td>
+<td>None</td>
+<td>boolean</td>
+</tr>
+</tbody></table>
+
+<h3 id="returns-dataframe">Returns DataFrame</h3>
+
+<h2 id="dataframe-set"><code class="prettyprint">DataFrame.set</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">df</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">DataFrame</span><span class="p">([{</span><span class="na">x</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="na">x</span><span class="p">:</span> <span class="mi">3</span><span class="p">}]);</span>
+
+<span class="c1">// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]);</span>
+<span class="nx">df</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'y'</span><span class="p">,</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]));</span>
+</code></pre>
+<p>Set a <code class="prettyprint">Series</code> at <code class="prettyprint">column</code></p>
+
+<h3 id="parameters">Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+<th>Type(s)</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>column</td>
+<td></td>
+<td>None</td>
+<td>string, number</td>
+</tr>
+<tr>
+<td>series</td>
+<td></td>
+<td>None</td>
+<td>Series, List, Array</td>
 </tr>
 </tbody></table>
 
