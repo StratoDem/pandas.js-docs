@@ -149,6 +149,45 @@ ds | Series with which to calculate covariance | None | Series
 
 ### Returns number
 
+## `Series.cummax`
+
+```javascript
+const ds = new Series([3, 2, 4], {index: [2, 3, 4]});
+
+// Returns Series([3, 3, 4], {index: [2, 3, 4]});
+ds.cummax();
+```
+
+Return cumulative max over requested axis
+
+pandas equivalent: [Series.cummax](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cummax.html)
+
+## `Series.cummin`
+
+```javascript
+const ds = new Series([1, 2, 3], {index: [2, 3, 4]});
+
+// Returns Series([1, 1, 1], {index: [2, 3, 4]});
+ds.cummin();
+```
+
+Return cumulative min over requested axis
+
+pandas equivalent: [Series.cummin](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cummin.html)
+
+## `Series.cummul`
+
+```javascript
+const ds = new Series([1, 2, 3], {index: [2, 3, 4]});
+
+// Returns Series([1, 2, 6], {index: [2, 3, 4]});
+ds.cummul();
+```
+
+Return cumulative mul over requested axis
+
+pandas equivalent: [Series.cummul](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cummul.html)
+
 ## `Series.cumsum`
 
 ```javascript
