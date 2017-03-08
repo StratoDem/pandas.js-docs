@@ -57,7 +57,7 @@ pandas equivalent: [DataFrame.columns](http://pandas.pydata.org/pandas-docs/stab
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-columns | Next column names | None | Array
+columns | Next column names | None | Seq.Indexed.<string>, Array
 
 ## `DataFrame.copy`
 
@@ -98,6 +98,70 @@ df.cov();
 Calculate the covariance between all `Series` in the `DataFrame`
 
 pandas equivalent: [DataFrame.cov](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cov.html)
+
+## `DataFrame.cummax`
+
+```javascript
+const ds = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3, 4]});
+
+// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3, 4]});
+ds.cummax();
+
+// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3 ,4]});
+ds.cummax(1);
+```
+
+Return cumulative maximum over requested axis
+
+pandas equivalent: [DataFrame.cummax](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cummax.html)
+
+## `DataFrame.cummin`
+
+```javascript
+const ds = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3, 4]});
+
+// Returns DataFrame([{x: 1, y: 1}, {x: 1, y: 1}, {x: 1, y: 1}], {index: [2, 3, 4]});
+ds.cummin();
+
+// Returns DataFrame([{x: 1, y: 1}, {x: 2, y: 2}, {x: 3, y: 3}], {index: [2, 3 ,4]});
+ds.cummin(1);
+```
+
+Return cumulative minimum over requested axis
+
+pandas equivalent: [DataFrame.cummin](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cummin.html)
+
+## `DataFrame.cummul`
+
+```javascript
+const ds = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3, 4]});
+
+// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 6}, {x: 6, y: 24}], {index: [2, 3, 4]});
+ds.cummul();
+
+// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 6}, {x: 3, y: 12}], {index: [2, 3 ,4]});
+ds.cummul(1);
+```
+
+Return cumulative multiple over requested axis
+
+pandas equivalent: [DataFrame.cummul](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cummul.html)
+
+## `DataFrame.cumsum`
+
+```javascript
+const ds = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [2, 3, 4]});
+
+// Returns DataFrame([{x: 1, y: 2}, {x: 3, y: 5}, {x: 6, y: 9}], {index: [2, 3, 4]});
+ds.cumsum();
+
+// Returns DataFrame([{x: 1, y: 3}, {x: 2, y: 5}, {x: 3, y: 7}], {index: [2, 3 ,4]});
+ds.cumsum(1);
+```
+
+Return cumulative sum over requested axis
+
+pandas equivalent: [DataFrame.cumsum](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.cumsum.html)
 
 ## `DataFrame.diff`
 
@@ -185,6 +249,9 @@ const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]);
 
 // Returns Series([1, 2, 3], {name: 'x', index: [0, 1, 2]})
 df.get('x');
+
+// Returns DataFrame([{y: 2}, {y: 3}, {y: 4}])
+df.get(['y']);
 ```
 
 Return the `Series` at the column
@@ -195,7 +262,7 @@ pandas equivalent: df['column_name']
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-columns | Name of the column to retrieve | None | string
+columns | Name of the column to retrieve or list of columns to retrieve | None | string, Array.<string>, Immutable.List.<string>, Immutable.Seq.<string>
 
 ### Returns Series
 
@@ -248,6 +315,61 @@ pandas equivalent: df >= val
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
 other | Other Iterable or scalar value to check for greater than or equal to | None | Array, List, Series, DataFrame, number, string
+
+### Returns DataFrame
+
+## `DataFrame.head`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}, {x: 4, y: 5}]);
+
+// returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}])
+df.head(2);
+```
+
+Return new DataFrame composed of first n rows of this DataFrame
+
+pandas equivalent: [DataFrame.head](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.head.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+n | Integer number of n rows to return from the DataFrame | 10 | number
+
+### Returns DataFrame
+
+## `DataFrame.iloc`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2, z: 3}, {x: 2, y: 3, z: 4}, {x: 3, y: 4, z: 5}]);
+
+// Returns DataFrame([{y: 3}], {index: [1]})
+df.iloc(1, 1);
+
+// Returns DataFrame([{y: 3, z: 4}}], {index: [1]})
+df.iloc(1, [1, 3]);
+
+// Returns DataFrame([{y: 3, z: 4}, {y: 4, z: 5}], {index: [1, 2]})
+df.iloc([1, 3], [1, 3]);
+
+// Returns DataFrame([{y: 3}, {y: 4}], {index: [1, 2]})
+df.iloc([1, 3], 1);
+
+// Returns DataFrame([{y: 2}, {y: 3}, {y: 4}], {index: [0, 1, 2]})
+df.iloc(1);
+```
+
+Return new DataFrame subset at [rowIdx, colIdx]
+
+pandas equivalent: [DataFrame.iloc](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.iloc.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+rowIdx |  | None | number, Array.<number>
+colIdx |  | None | number, Array.<number>=
 
 ### Returns DataFrame
 
@@ -451,6 +573,72 @@ axis | Axis along which to calculate percentage change | 0 | number
 
 ### Returns DataFrame
 
+## `DataFrame.pivot`
+
+Reshape data (produce a 'pivot' table) based on column values. Uses unique values from
+index / columns to form axes of the resulting DataFrame.
+
+pandas equivalent: [DataFrame.pivot](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.pivot.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+index | Name of the column to use as index | None | string, number
+columns | Name of the column to use as column values | None | string, number
+values | Name of the column to use as the value | None | string, number
+
+### Returns DataFrame
+
+## `DataFrame.reset_index`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}], {index: [1, 2]});
+
+// returns DataFrame([{index: 1, x: 1, y: 2}, {index: 2, x: 2, y: 3}], {index: [0, 1]})
+df.reset_index();
+
+// returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}], {index: [0, 1]});
+df.reset_index({drop: true});
+
+const df2 = new DataFrame([{index: 1}, {index: 2}], {index: [1, 2]});
+// returns DataFrame([{level_0: 1, index: 1}, {level_0: 1, index: 2}], {index: [1, 2]});
+df2.reset_index();
+```
+
+Reset the index for a DataFrame
+
+pandas equivalent: [DataFrame.reset_index](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.reset_index.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+args |  | None | object
+args.drop | Drop the index when resetting? Otherwise, add as new column | None | boolean
+
+### Returns DataFrame
+
+## `DataFrame.set`
+
+```javascript
+const df = new DataFrame([{x: 1}, {x: 2}, {x: 3}]);
+
+// Returns DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]);
+df.set('y', new Series([2, 3, 4]));
+```
+
+Set a `Series` at `column`
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+column |  | None | string, number
+series |  | None | Series, List, Array
+
+### Returns DataFrame
+
 ## `DataFrame.std`
 
 ```javascript
@@ -521,6 +709,27 @@ axis | Axis along which to sum values | 0 | number
 
 ### Returns Series
 
+## `DataFrame.tail`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}, {x: 4, y: 5}]);
+
+// returns DataFrame([{x: 3, y: 4}, {x: 4, y: 5}])
+df.tail(2);
+```
+
+Return new DataFrame composed of last n rows of this DataFrame
+
+pandas equivalent: [DataFrame.tail](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.tail.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+n | Integer number of n rows to return from the DataFrame | 10 | number
+
+### Returns DataFrame
+
 ## `DataFrame.to_csv`
 
 ```javascript
@@ -533,6 +742,56 @@ df.to_csv();
 Convert the `DataFrame` to a csv string
 
 pandas equivalent: [DataFrame.to_csv](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_csv.html)
+
+## `DataFrame.to_excel`
+
+Write the `DataFrame` to a Workbook object
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+excel_writer | File path or existing Workbook object | None | string, Workbook
+sheetName | Name of values which will contain DataFrame | Sheet1 | string
+download | Download the excel file? | False | boolean
+kwargs |  | None | Object
+kwargs.index |  | True | boolean
+
+### Returns Workbook
+
+## `DataFrame.to_json`
+
+```javascript
+const df = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]);
+
+// Returns {x: {0: 1, 1: 2, 2: 3}, y: {0: 1, 1: 2, 2: 3}}
+df.to_json();
+
+// Returns [{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}]
+df.to_json({orient: 'records'});
+
+// Returns {0: {x: 1, y: 2}, 1: {x: 2, y: 3}, 2: {x: 3, y: 4}}
+df.to_json({orient: 'index'});
+
+// Returns {index: [0, 1, 2], columns: ['x', 'y'], values: [[1, 2], [2, 3], [3, 4]]}
+df.to_json({orient: 'split'});
+
+// Returns [[1, 2], [2, 3], [3, 4]]
+df.to_json({orient: 'values'});
+```
+
+Convert the DataFrame to a json object
+
+pandas equivalent: [DataFrame.to_json](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.to_json.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+kwargs |  | None | None
+kwargs.orient | orientation of JSON | columns | string
+
+### Returns *
 
 ## `DataFrame.values`
 
