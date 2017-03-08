@@ -149,6 +149,19 @@ ds | Series with which to calculate covariance | None | Series
 
 ### Returns number
 
+## `Series.cumsum`
+
+```javascript
+const ds = new Series([1, 2, 3], {index: [2, 3, 4]});
+
+// Returns Series([1, 3, 6], {index: [2, 3, 4]});
+ds.cumsum();
+```
+
+Return cumulative sum over requested axis
+
+pandas equivalent: [Series.cumsum](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cumsum.html)
+
 ## `Series.diff`
 
 ```javascript
@@ -769,6 +782,34 @@ ds.toString()
 ```
 
 Return the `Series` as a string
+
+## `Series.to_json`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'x'});
+
+// Returns {0: 1, 1: 2, 2: 3}
+ds.to_json();
+
+// Returns [1, 2, 3]
+ds.to_json({orient: 'records'});
+
+// Returns {index: [0, 1, 2], name: 'x', values: [1, 2, 3]}
+ds.to_json({orient: 'split'});
+```
+
+Convert the Series to a json object
+
+pandas equivalent: [Series.to_json](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.to_json.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+kwargs |  | None | None
+kwargs.orient | orientation of JSON | columns | string
+
+### Returns *
 
 ## `Series.unique`
 
