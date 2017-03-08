@@ -410,6 +410,36 @@ values</p>
 
 <h3 id="returns-number">Returns number</h3>
 
+<h2 id="series-cummax"><code class="prettyprint">Series.cummax</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns Series([3, 3, 4], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummax</span><span class="p">();</span>
+</code></pre>
+<p>Return cumulative max over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cummax.html">Series.cummax</a></p>
+
+<h2 id="series-cummin"><code class="prettyprint">Series.cummin</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns Series([1, 1, 1], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummin</span><span class="p">();</span>
+</code></pre>
+<p>Return cumulative min over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cummin.html">Series.cummin</a></p>
+
+<h2 id="series-cummul"><code class="prettyprint">Series.cummul</code></h2>
+<pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
+
+<span class="c1">// Returns Series([1, 2, 6], {index: [2, 3, 4]});</span>
+<span class="nx">ds</span><span class="p">.</span><span class="nx">cummul</span><span class="p">();</span>
+</code></pre>
+<p>Return cumulative mul over requested axis</p>
+
+<p>pandas equivalent: <a href="http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.cummul.html">Series.cummul</a></p>
+
 <h2 id="series-cumsum"><code class="prettyprint">Series.cumsum</code></h2>
 <pre class="highlight javascript"><code><span class="kr">const</span> <span class="nx">ds</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Series</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">{</span><span class="na">index</span><span class="p">:</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]});</span>
 
