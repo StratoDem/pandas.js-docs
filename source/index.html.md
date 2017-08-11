@@ -13,6 +13,7 @@ includes:
   - installation
   - series
   - frame
+  - utils
 
 search: true
 ---
