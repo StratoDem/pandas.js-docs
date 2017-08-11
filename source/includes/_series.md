@@ -59,7 +59,33 @@ pandas equivalent: [Series.add](http://pandas.pydata.org/pandas-docs/stable/gene
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-val | Value to add to the `Series` | None | Iterable, Series, number
+other | Value to add to the `Series` | None | Iterable, Series, number
+
+### Returns Series
+
+## `Series.append`
+
+```javascript
+const ds1 = new Series([1, 2, 3], {index: [1, 2, 3]});
+const ds2 = new Series([2, 3, 4], {index: [3, 4, 5]});
+
+// Returns Series([1, 2, 3, 2, 3, 4], {index: [1, 2, 3, 3, 4, 5]});
+ds1.append(ds2);
+
+// Returns Series([1, 2, 3, 2, 3, 4], {index: [0, 1, 2, 3, 4, 5]});
+ds1.append(ds2, true);
+```
+
+Append another Series to this and return a new Series
+
+pandas equivalent: [Series.append](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.append.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other |  | None | Series
+ignore_index |  | False | boolean
 
 ### Returns Series
 
@@ -244,7 +270,7 @@ pandas equivalent: [Series.div](http://pandas.pydata.org/pandas-docs/stable/gene
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-val | Value by which to divide the `Series` | None | Iterable, Series, number
+other | Value by which to divide the `Series` | None | Iterable, Series, number
 
 ### Returns Series
 
@@ -267,7 +293,7 @@ pandas equivalent: [Series.divide](http://pandas.pydata.org/pandas-docs/stable/g
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-val | Value by which to divide the `Series` | None | Iterable, Series, number
+other | Value by which to divide the `Series` | None | Iterable, Series, number
 
 ### Returns Series
 
@@ -606,7 +632,7 @@ pandas equivalent: [Series.mul](http://pandas.pydata.org/pandas-docs/stable/gene
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-val | Value to multiply by the `Series` | None | Iterable, Series, number
+other | Value to multiply by the `Series` | None | Iterable, Series, number
 
 ### Returns Series
 
@@ -629,9 +655,13 @@ pandas equivalent: [Series.multiply](http://pandas.pydata.org/pandas-docs/stable
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-val | Value to multiply by the `Series` | None | Iterable, Series, number
+other | Value to multiply by the `Series` | None | Iterable, Series, number
 
 ### Returns Series
+
+## `Series.name`
+
+Return the name of the `Series`
 
 ## `Series.notnull`
 
@@ -666,6 +696,25 @@ Name | Description | Default | Type(s)
 periods | Number of periods to use for percentage change calculation | 1 | number
 
 ### Returns Series
+
+## `Series.rename`
+
+```javascript
+const ds = new Series([1, 2, 3], {name: 'Test name'});
+ds.rename('New test name');
+// returns 'New test name'
+ds.name;
+```
+
+Rename the `Series` and return a new `Series`
+
+pandas equivalent: [Series.rename](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.Series.rename.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+name |  | None | string
 
 ## `Series.round`
 
@@ -766,7 +815,7 @@ pandas equivalent: [Series.sub](http://pandas.pydata.org/pandas-docs/stable/gene
 
 Name | Description | Default | Type(s)
 -----|-------------|---------|--------
-val | Value to subtract from the `Series` | None | Iterable, Series, number
+other | Value to subtract from the `Series` | None | Iterable, Series, number
 
 ### Returns Series
 

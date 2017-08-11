@@ -26,6 +26,36 @@ data | Data to be stored in DataFrame | None | Array, Object
 kwargs | Extra optional arguments for a DataFrame | None | Object
 kwargs.index |  | None | Array, Object
 
+## `DataFrame.append`
+
+```javascript
+const df1 = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}], {index: [1, 2]});
+const df2 = new DataFrame([{x: 2, y: 2}, {x: 3, y: 3}], {index: [2, 3]});
+
+// Returns DataFrame(
+  [{x: 1, y: 2}, {x: 2, y: 3}, {x: 2, y: 2}, {x: 3, y: 3}],
+  {index: [1, 2, 2, 3]});
+df1.append(df2);
+
+// Returns DataFrame(
+  [{x: 1, y: 2}, {x: 2, y: 3}, {x: 2, y: 2}, {x: 3, y: 3}],
+  {index: [0, 1, 2, 3]});
+df1.append(df2, true);
+```
+
+Append another DataFrame to this and return a new DataFrame
+
+pandas equivalent: [DataFrame.append](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.append.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+other |  | None | DataFrame
+ignore_index |  | False | boolean
+
+### Returns DataFrame
+
 ## `DataFrame.columns`
 
 ```javascript
@@ -590,6 +620,34 @@ values | Name of the column to use as the value | None | string, number
 
 ### Returns DataFrame
 
+## `DataFrame.pivot_table`
+
+Reshape data (produce a 'pivot' table) based on a set of index, columns, or values
+columns from the original DataFrame
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+index | Name(s) of column(s) to use as the index for the pivoted DataFrame | None | Array.<string>, Immutable.List, string, number
+columns | Name(s) of column(s) to use as the columns for the pivoted DataFrame | None | Array.<string>, Immutable.List, string, number
+values | Name(s) of column(s) to use as the values for the pivoted DataFrame | None | Array.<string>, Immutable.List, string, number
+aggfunc | Name of aggregation function | sum | string
+
+## `DataFrame.rename`
+
+Rename the `DataFrame` and return a new DataFrame
+
+pandas equivalent: [DataFrame.rename](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.rename.html)
+
+### Parameters
+
+Name | Description | Default | Type(s)
+-----|-------------|---------|--------
+columns |  | None | Immutable.Map
+
+### Returns DataFrame
+
 ## `DataFrame.reset_index`
 
 ```javascript
@@ -792,6 +850,20 @@ kwargs |  | None | None
 kwargs.orient | orientation of JSON | columns | string
 
 ### Returns *
+
+## `DataFrame.transpose`
+
+```javascript
+const df1 = new DataFrame([{x: 1, y: 2}, {x: 2, y: 3}, {x: 3, y: 4}], {index: [1, 2, 3]});
+
+// Returns DataFrame(
+  [{1: 1, 2: 2, 3: 3}, {1: 2, 2: 3, 3: 4}], {index: ['x', 'y']});
+df1.transpose();
+```
+
+Transpose the DataFrame by switching the index and columns
+
+pandas equivalent: [DataFrame.transpose](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.transpose.html)
 
 ## `DataFrame.values`
 
