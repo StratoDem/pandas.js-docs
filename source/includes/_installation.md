@@ -38,15 +38,16 @@ console.log(`Standard deviation: ${ds_1.std()}`);
 0	1
 1	2
 2	3
+3	4
 Name: My Data 1, dtype: dtype(int)
 Sum: 10
-Standard deviation: 1
+Standard deviation: 1.2909944487358056
 ```
 
 ```javascript
 const ds_2 = new Series([2, 3, 4, 5], {name: 'My Data 2'});
 console.log('Summing two Series:');
-console.log(ds_1.plus(ds_2).toString());
+console.log(ds_1.add(ds_2).toString());
 ```
 
 A [`Series`](#series) object is a one-dimensional named Immutable.List of values.
